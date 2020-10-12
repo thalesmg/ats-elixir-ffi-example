@@ -9,14 +9,9 @@ extern fun enif_make_int: (ptr, int) -> ERL_NIF_TERM = "mac#enif_make_int"
 
 extern fun bah_nif: (ptr, int, ptr) -> ERL_NIF_TERM = "ext#bah_nifao"
 
-(* implement bah_nif(env, argc, argv) = bah_val where { *)
-(*   val bah_val = enif_make_int (env, 17) *)
-(* } *)
-
 implement bah_nif(env, argc, argv) = enif_make_int (env, 17)
 
-(* extern fun bah_nif(env: ErlNifEnv, argc: int, argv: ERL_NIF_TERM): ERL_NIF_TERM = enif_make_int (env, 17) *)
-
+(* TODO: how to get rid of this splice??? *)
 %{$
 static ErlNifFunc nif_funcs[] = {
   {"bah", 0, bah_nifao}
